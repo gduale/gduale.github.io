@@ -2,10 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gduale&#39;s blog</title>
-    <link>https://gduale.github.io/</link>
+    <link>https://gduale.com/</link>
     <description>Recent content on gduale&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://gduale.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Apr 2024 06:05:03 +0200</lastBuildDate>
+    <atom:link href="https://gduale.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Welcome to my personal blog</title>
+      <link>https://gduale.com/posts/my-first-post/</link>
+      <pubDate>Sat, 20 Apr 2024 06:05:03 +0200</pubDate>
+      <guid>https://gduale.com/posts/my-first-post/</guid>
+      <description>Hello everyone!&#xA;Welcome to my new blog. We&amp;rsquo;ll be talking here about tech, open source, Linux, and also *BSD systems (with a preference for OpenBSD, you&amp;rsquo;ll see).&#xA;I won&amp;rsquo;t say more for now; see you in the next article.</description>
+    </item>
   </channel>
 </rss>
