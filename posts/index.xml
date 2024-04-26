@@ -6,8 +6,15 @@
     <description>Recent content in Posts on gduale&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Apr 2024 06:05:03 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 26 Apr 2024 23:05:03 +0200</lastBuildDate>
     <atom:link href="https://gduale.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenBSD on a Scaleway VM</title>
+      <link>https://gduale.com/posts/openbsd-on-a-scaleway-vm/</link>
+      <pubDate>Fri, 26 Apr 2024 23:05:03 +0200</pubDate>
+      <guid>https://gduale.com/posts/openbsd-on-a-scaleway-vm/</guid>
+      <description>In this article, we will see how to install OpenBSD on a Scaleway VM.&#xA;First, create an instance (a VM) like usual. You can choose for example:&#xA;Model: DEV1-S OS: Debian 12 Disk size: 10GB Don&amp;rsquo;t forget to add your public ssh key to be able to access to the VM via ssh.&#xA;Now, your VM is up and running! Cool we can eraze it ;)&#xA;Switch off the VM, go to &amp;ldquo;Advanced settings&amp;rdquo; and select &amp;ldquo;Use rescue image&amp;rdquo; and save.</description>
+    </item>
     <item>
       <title>Welcome to my personal blog</title>
       <link>https://gduale.com/posts/welcome-to-my-personal-blog/</link>

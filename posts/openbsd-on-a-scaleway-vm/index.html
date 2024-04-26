@@ -1,0 +1,614 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #fff"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>OpenBSD on a Scaleway VM - gduale&#39;s blog</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="In this article, we will see how to install OpenBSD on a Scaleway VM.
+First, create an instance (a VM) like usual. You can choose for example:
+Model: DEV1-S OS: Debian 12 Disk size: 10GB Don&rsquo;t forget to add your public ssh key to be able to access to the VM via ssh.
+Now, your VM is up and running! Cool we can eraze it ;)
+Switch off the VM, go to &ldquo;Advanced settings&rdquo; and select &ldquo;Use rescue image&rdquo; and save." />
+  <meta name="author" content="Guillaume Dualé" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://gduale.com/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://gduale.com/theme.svg" />
+
+  
+  
+  
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="https://gduale.com/twitter.svg" />
+  
+  <link rel="preload" as="image" href="https://gduale.com/github.svg" />
+  
+  <link rel="preload" as="image" href="https://gduale.com/linkedin.svg" />
+  
+  <link rel="preload" as="image" href="https://gduale.com/rss.svg" />
+  
+  
+
+  
+  
+
+  
+  
+  
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css"
+  integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI"
+  crossorigin="anonymous"
+/>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"
+  integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t"
+  crossorigin="anonymous"
+></script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"
+  integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+  crossorigin="anonymous"
+></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () =>
+    renderMathInElement(document.body, {
+      
+      
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+      
+      throwOnError: false,
+    }),
+  );
+</script>
+
+  
+  
+  
+
+  
+  <link rel="icon" href="https://gduale.com/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://gduale.com/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.122.0">
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="OpenBSD on a Scaleway VM">
+<meta itemprop="description" content="In this article, we will see how to install OpenBSD on a Scaleway VM.
+First, create an instance (a VM) like usual. You can choose for example:
+Model: DEV1-S OS: Debian 12 Disk size: 10GB Don&rsquo;t forget to add your public ssh key to be able to access to the VM via ssh.
+Now, your VM is up and running! Cool we can eraze it ;)
+Switch off the VM, go to &ldquo;Advanced settings&rdquo; and select &ldquo;Use rescue image&rdquo; and save."><meta itemprop="datePublished" content="2024-04-26T23:05:03+02:00" />
+<meta itemprop="dateModified" content="2024-04-26T23:05:03+02:00" />
+<meta itemprop="wordCount" content="1662">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="OpenBSD on a Scaleway VM" />
+<meta property="og:description" content="In this article, we will see how to install OpenBSD on a Scaleway VM.
+First, create an instance (a VM) like usual. You can choose for example:
+Model: DEV1-S OS: Debian 12 Disk size: 10GB Don&rsquo;t forget to add your public ssh key to be able to access to the VM via ssh.
+Now, your VM is up and running! Cool we can eraze it ;)
+Switch off the VM, go to &ldquo;Advanced settings&rdquo; and select &ldquo;Use rescue image&rdquo; and save." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gduale.com/posts/openbsd-on-a-scaleway-vm/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-26T23:05:03+02:00" />
+<meta property="article:modified_time" content="2024-04-26T23:05:03+02:00" />
+
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="OpenBSD on a Scaleway VM"/>
+<meta name="twitter:description" content="In this article, we will see how to install OpenBSD on a Scaleway VM.
+First, create an instance (a VM) like usual. You can choose for example:
+Model: DEV1-S OS: Debian 12 Disk size: 10GB Don&rsquo;t forget to add your public ssh key to be able to access to the VM via ssh.
+Now, your VM is up and running! Cool we can eraze it ;)
+Switch off the VM, go to &ldquo;Advanced settings&rdquo; and select &ldquo;Use rescue image&rdquo; and save."/>
+
+  
+  
+  
+  <link rel="canonical" href="https://gduale.com/posts/openbsd-on-a-scaleway-vm/" />
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="https://gduale.com/"
+      >gduale&#39;s blog</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#fff'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/gduale_"
+        target="_blank"
+        rel="me"
+      >
+        twitter
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/gduale"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/guillaume-dual%C3%A9-9b6822a/"
+        target="_blank"
+        rel="me"
+      >
+        linkedin
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./rss.svg)"
+        href="https://gduale.com/index.xml"
+        target="_blank"
+        rel="alternate"
+      >
+        rss
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">OpenBSD on a Scaleway VM</h1>
+
+    
+    <div class="text-sm antialiased opacity-60">
+      
+      <time>Apr 26, 2024</time>
+      
+      
+      
+      
+    </div>
+    
+  </header>
+
+  <section><p>In this article, we will see how to install <a href="https://openbsd.org">OpenBSD</a> on a <a href="https://scaleway.com">Scaleway</a> VM.</p>
+<p>First, create an instance (a VM) like usual. You can choose for example:</p>
+<ul>
+<li>Model: DEV1-S</li>
+<li>OS: Debian 12</li>
+<li>Disk size: 10GB</li>
+</ul>
+<p>Don&rsquo;t forget to add your public ssh key to be able to access to the VM via ssh.</p>
+<p>Now, your VM is up and running! Cool we can eraze it ;)</p>
+<p>Switch off the VM, go to &ldquo;Advanced settings&rdquo; and select &ldquo;Use rescue image&rdquo; and save.</p>
+<p>Now, switch on your VM and wait 1 or 2 minutes. After that, you will be able to ssh to your VM.</p>
+<p>The VM is booted with a &ldquo;Live Ubuntu&rdquo; OS, usually used to debug serious problems.</p>
+<p>We can use it to write on the disk the minimal OpenBSD installer.</p>
+<p>When you have a root shell on the VM, you can do this with two commands:</p>
+<pre tabindex="0"><code>wget https://ftp.openbsd.org/pub/OpenBSD/7.5/amd64/miniroot75.img
+dd if=miniroot75.img of=/dev/sda;sync
+</code></pre><p>Switch off the VM, go to &ldquo;Advanced settings&rdquo; and select &ldquo;Use local boot&rdquo; and save.</p>
+<p>Reboot the VM from the Scaleway web interface and start the VM console.
+You will see the OpenBSD installer prompt &ldquo;boot&gt;&rdquo;.</p>
+<p>Before the installer boot automatically, write after the &ldquo;boot&gt;&rdquo;, this:</p>
+<pre tabindex="0"><code>set tty com0
+</code></pre><p>Then, hit enter twice.</p>
+<p>You should see the OpenBSD installer starting!</p>
+<p>Now, you can follow the <a href="https://www.openbsd.org/faq/faq4.html">official documentation</a> to install OpenBSD.</p>
+<p>Some importants details are about the disk and the console.</p>
+<p>You should configure the disk with the option &ldquo;G&rdquo; to use the whole disk in the GPT mode.
+And answer &ldquo;yes&rdquo; for the next question:</p>
+<pre tabindex="0"><code>An EFI/GPT disk may not boot. Proceed? [no] yes
+</code></pre><p>Illustration:</p>
+<p><img src="/openbsd-scaleway-disk.png" alt="Screenshot representing the disks operations" title="Disks operations"></p>
+<p>For the console, you should select &ldquo;com0&rdquo;, when the installer ask for:</p>
+<pre tabindex="0"><code>Change the default console to com0? [yes]
+</code></pre><p>Also, let&rsquo;s keep the default speed to 9600:</p>
+<pre tabindex="0"><code>Which speed should com0 use? (or &#39;done&#39;) [9600]
+</code></pre><p>Then you can continue the installation like usual.</p>
+<p>At the end, select &ldquo;reboot&rdquo; (the default choice) and hit enter.</p>
+<p>Congratulation, you have completed the installation of OpenBSD on a Scaleway VM!</p>
+<p>After 2 minutes, will you be able to ssh to the VM from your computer.</p>
+<h2 id="the-classic-neofetch-">The classic neofetch :)</h2>
+<p><img src="/scaleway-neofetch.png" alt="Screenshot of a neofetch command" title="Neofetch"></p>
+<h2 id="additionals-notes">Additionals notes</h2>
+<p>If it can help, here is the output of the installer when I setup the VM.</p>
+<pre tabindex="0"><code>&gt;&gt; OpenBSD/amd64 BOOTX64 3.65
+boot&gt; 
+cannot open hd0a:/etc/random.seed: No such file or directory
+booting hd0a:/bsd: 4076463+1688576+3891240+0+708608 [109+464016+317541]=0xaa40e8
+entry point at 0x1001000
+Copyright (c) 1982, 1986, 1989, 1991, 1993
+        The Regents of the University of California.  All rights reserved.
+Copyright (c) 1995-2024 OpenBSD. All rights reserved.  https://www.OpenBSD.org
+
+OpenBSD 7.5 (RAMDISK_CD) #76: Wed Mar 20 15:53:54 MDT 2024
+    deraadt@amd64.openbsd.org:/usr/src/sys/arch/amd64/compile/RAMDISK_CD
+real mem = 2112753664 (2014MB)
+avail mem = 2044616704 (1949MB)
+random: good seed from bootblocks
+mainbus0 at root
+bios0 at mainbus0: SMBIOS rev. 2.8 @ 0x7f919000 (9 entries)
+bios0:
+bios0: Scaleway SCW-DEV1-S
+acpi0 at bios0: ACPI 1.0
+acpi0: tables DSDT FACP APIC HPET WAET
+acpimadt0 at acpi0 addr 0xfee00000: PC-AT compat
+cpu0 at mainbus0: apid 0 (boot processor)
+cpu0: AMD EPYC 7281 16-Core Processor, 2096.37 MHz, 17-01-02
+cpu0: FPU,VME,DE,PSE,TSC,MSR,PAE,MCE,CX8,APIC,SEP,MTRR,PGE,MCA,CMOV,PAT,PSE36,CFLUSH,MMX,FXSR,SSE,SSE2,HTT,SSE3,PCLMUL,SSSE3,FMA3,CX16,SSE4.1,SSE4.2,x2APIC,MOVBE,POPCNT,DEADLINE,AES,XSAVE,AVX,F16C,RDRAND,HV,NXE,MMXX,FFXSR,PAGE1GB,RDTSCP,LONG,LAHF,CMPLEG,SVM,AMCR8,ABM,SSE4A,MASSE,3DNOWP,OSVW,CPCTR,FSGSBASE,TSC_ADJUST,BMI1,AVX2,SMEP,BMI2,RDSEED,ADX,SMAP,CLFLUSHOPT,SHA,IBPB,VIRTSSBD,XSAVEOPT,XSAVEC,XGETBV1,XSAVES
+cpu0: 64KB 64b/line 2-way D-cache, 64KB 64b/line 2-way I-cache
+cpu0: 512KB 64b/line 16-way L2 cache
+cpu0: apic clock running at 999MHz
+cpu at mainbus0: not configured
+ioapic0 at mainbus0: apid 0 pa 0xfec00000, version 11, 24 pins
+acpihpet0 at acpi0: 100000000 Hz
+acpiprt0 at acpi0: bus 0 (PCI0)
+&#34;ACPI0006&#34; at acpi0 not configured
+acpipci0 at acpi0 PCI0
+com0 at acpi0 COM1 addr 0x3f8/0x8 irq 4: ns16550a, 16 byte fifo
+com0: console
+acpicmos0 at acpi0
+&#34;PNP0A06&#34; at acpi0 not configured
+&#34;PNP0A06&#34; at acpi0 not configured
+&#34;PNP0A06&#34; at acpi0 not configured
+&#34;QEMU0002&#34; at acpi0 not configured
+&#34;ACPI0010&#34; at acpi0 not configured
+acpicpu at acpi0 not configured
+pvbus0 at mainbus0: KVM
+pci0 at mainbus0 bus 0
+0:2:0: rom address conflict 0xfff80000/0x80000
+pchb0 at pci0 dev 0 function 0 &#34;Intel 82441FX&#34; rev 0x02
+&#34;Intel 82371SB ISA&#34; rev 0x00 at pci0 dev 1 function 0 not configured
+pciide0 at pci0 dev 1 function 1 &#34;Intel 82371SB IDE&#34; rev 0x00: DMA, channel 0 wired to compatibility, channel 1 wired to compatibility
+pciide0: channel 0 ignored (disabled)
+pciide0: channel 1 ignored (disabled)
+&#34;Intel 82371AB Power&#34; rev 0x03 at pci0 dev 1 function 3 not configured
+virtio0 at pci0 dev 2 function 0 &#34;Qumranet Virtio Network&#34; rev 0x00
+vio0 at virtio0: address de:00:00:4e:d4:ad
+virtio0: msix per-VQ
+virtio1 at pci0 dev 3 function 0 &#34;Qumranet Virtio SCSI&#34; rev 0x00
+vioscsi0 at virtio1: qsize 256
+scsibus0 at vioscsi0: 255 targets
+sd0 at scsibus0 targ 0 lun 0: &lt;SCW, b_ssd, v42&gt;
+sd0: 9536MB, 512 bytes/sector, 19531250 sectors, thin
+virtio1: msix per-VQ
+virtio2 at pci0 dev 4 function 0 &#34;Qumranet Virtio Console&#34; rev 0x00
+virtio2: no matching child driver; not configured
+isa0 at mainbus0
+pckbc0 at isa0 port 0x60/5 irq 1 irq 12
+pckbd0 at pckbc0 (kbd slot)
+wskbd0 at pckbd0 mux 1
+efifb at mainbus0 not configured
+softraid0 at root
+scsibus1 at softraid0: 256 targets
+root on rd0a swap on rd0b dump on rd0b
+WARNING: CHECK AND RESET THE DATE!
+erase ^?, werase ^W, kill ^U, intr ^C, status ^T
+
+Welcome to the OpenBSD/amd64 7.5 installation program.
+(I)nstall, (U)pgrade, (A)utoinstall or (S)hell? i
+At any prompt except password prompts you can escape to a shell by
+typing &#39;!&#39;. Default answers are shown in []&#39;s and are selected by
+pressing RETURN.  You can exit this program at any time by pressing
+Control-C, but this can leave your system in an inconsistent state.
+
+Terminal type? [vt220] 
+System hostname? (short form, e.g. &#39;foo&#39;) cloud   
+
+Available network interfaces are: vio0 vlan0.
+Network interface to configure? (name, lladdr, &#39;?&#39;, or &#39;done&#39;) [vio0] 
+IPv4 address for vio0? (or &#39;autoconf&#39; or &#39;none&#39;) [autoconf] 
+IPv6 address for vio0? (or &#39;autoconf&#39; or &#39;none&#39;) [none] 
+Available network interfaces are: vio0 vlan0.
+Network interface to configure? (name, lladdr, &#39;?&#39;, or &#39;done&#39;) [done] 
+Using DNS domainname my.domain
+Using DNS nameservers at 51.159.69.156 51.159.69.162
+
+Password for root account? (will not echo) 
+Password for root account? (again) 
+Start sshd(8) by default? [yes] 
+Change the default console to com0? [yes] 
+Available speeds are: 9600 19200 38400 57600 115200.
+Which speed should com0 use? (or &#39;done&#39;) [9600] 
+Setup a user? (enter a lower-case loginname, or &#39;no&#39;) [no] poc
+Full name for user poc? [poc] 
+Password for user poc? (will not echo) 
+Password for user poc? (again) 
+WARNING: root is targeted by password guessing attacks, pubkeys are safer.
+Allow root ssh login? (yes, no, prohibit-password) [no] 
+What timezone are you in? (&#39;?&#39; for list) [Europe/Paris] 
+
+Available disks are: sd0.
+Which disk is the root disk? (&#39;?&#39; for details) [sd0] 
+Encrypt the root disk with a (p)assphrase or (k)eydisk? [no] 
+Disk: sd0       geometry: 16383/16/74 [19531250 Sectors]
+Offset: 0       Signature: 0xAA55
+            Starting         Ending         LBA Info:
+ #: id      C   H   S -      C   H   S [       start:        size ]
+-------------------------------------------------------------------------------
+ 0: EF      0   0  65 -      0  13  62 [          64:         960 ] EFI Sys
+ 1: 00      0   0   0 -      0   0   0 [           0:           0 ] Unused
+ 2: 00      0   0   0 -      0   0   0 [           0:           0 ] Unused
+*3: A6      0  13  63 -      9   9  70 [        1024:       10368 ] OpenBSD
+Use (W)hole disk MBR, whole disk (G)PT, (O)penBSD area or (E)dit? [OpenBSD] G
+An EFI/GPT disk may not boot. Proceed? [no] yes
+Setting OpenBSD GPT partition to whole sd0...done.
+The auto-allocated layout for sd0 is:
+#                size           offset  fstype [fsize bsize   cpg]
+  a:          1142.0M           532544  4.2BSD   2048 16384     1 # /
+  b:           256.0M          2871424    swap                    
+  c:          9536.7M                0  unused                    
+  d:          3072.0M          3395712  4.2BSD   2048 16384     1 # /usr
+  e:          2048.0M          9687168  4.2BSD   2048 16384     1 # /home
+  i:           260.0M               64   MSDOS                    
+Use (A)uto layout, (E)dit auto layout, or create (C)ustom layout? [a] 
+/dev/rsd0a: 1142.0MB in 2338880 sectors of 512 bytes
+6 cylinder groups of 202.50MB, 12960 blocks, 25920 inodes each
+/dev/rsd0e: 2048.0MB in 4194304 sectors of 512 bytes
+11 cylinder groups of 202.50MB, 12960 blocks, 25920 inodes each
+/dev/rsd0d: 3072.0MB in 6291456 sectors of 512 bytes
+16 cylinder groups of 202.50MB, 12960 blocks, 25920 inodes each
+/dev/sd0a (db982d3783b55bd8.a) on /mnt type ffs (rw, asynchronous, local)
+/dev/sd0e (db982d3783b55bd8.e) on /mnt/home type ffs (rw, asynchronous, local, nodev, nosuid)
+/dev/sd0d (db982d3783b55bd8.d) on /mnt/usr type ffs (rw, asynchronous, local, nodev)
+
+Let&#39;s install the sets!
+Location of sets? (disk http nfs or &#39;done&#39;) [http] 
+HTTP proxy URL? (e.g. &#39;http://proxy:8080&#39;, or &#39;none&#39;) [none] 
+HTTP Server? (hostname, list#, &#39;done&#39; or &#39;?&#39;) [cdn.openbsd.org] 
+Server directory? [pub/OpenBSD/7.5/amd64] 
+
+Select sets by entering a set name, a file name pattern or &#39;all&#39;. De-select
+sets by prepending a &#39;-&#39;, e.g.: &#39;-game*&#39;. Selected sets are labelled &#39;[X]&#39;.
+    [X] bsd           [X] base75.tgz    [X] game75.tgz    [X] xfont75.tgz
+    [X] bsd.mp        [X] comp75.tgz    [X] xbase75.tgz   [X] xserv75.tgz
+    [X] bsd.rd        [X] man75.tgz     [X] xshare75.tgz
+Set name(s)? (or &#39;abort&#39; or &#39;done&#39;) [done] -x*
+    [X] bsd           [X] base75.tgz    [X] game75.tgz    [ ] xfont75.tgz
+    [X] bsd.mp        [X] comp75.tgz    [ ] xbase75.tgz   [ ] xserv75.tgz
+    [X] bsd.rd        [X] man75.tgz     [ ] xshare75.tgz
+Set name(s)? (or &#39;abort&#39; or &#39;done&#39;) [done] -g*
+    [X] bsd           [X] base75.tgz    [ ] game75.tgz    [ ] xfont75.tgz
+    [X] bsd.mp        [X] comp75.tgz    [ ] xbase75.tgz   [ ] xserv75.tgz
+    [X] bsd.rd        [X] man75.tgz     [ ] xshare75.tgz
+Set name(s)? (or &#39;abort&#39; or &#39;done&#39;) [done] 
+Get/Verify SHA256.sig   100% |**************************|  2324       00:00    
+Signature Verified
+Get/Verify bsd          100% |**************************| 25844 KB    00:00    
+Get/Verify bsd.mp       100% |**************************| 25917 KB    00:00    
+Get/Verify bsd.rd       100% |**************************|  4575 KB    00:00    
+Get/Verify base75.tgz   100% |**************************|   408 MB    00:12    
+Get/Verify comp75.tgz   100% |**************************| 80681 KB    00:02    
+Get/Verify man75.tgz    100% |**************************|  7870 KB    00:00    
+Installing bsd          100% |**************************| 25844 KB    00:00    
+Installing bsd.mp       100% |**************************| 25917 KB    00:00    
+Installing bsd.rd       100% |**************************|  4575 KB    00:00    
+Installing base75.tgz   100% |**************************|   408 MB    00:16    
+Extracting etc.tgz      100% |**************************|   267 KB    00:00    
+Installing comp75.tgz   100% |**************************| 80681 KB    00:05    
+Installing man75.tgz    100% |**************************|  7870 KB    00:00    
+Location of sets? (disk http nfs or &#39;done&#39;) [done] 
+Saving configuration files... done.
+Making all device nodes... done.
+Multiprocessor machine; using bsd.mp instead of bsd.
+fw_update: add amd; update none
+Relinking to create unique kernel... done.
+
+CONGRATULATIONS! Your OpenBSD install has been successfully completed!
+
+When you login to your new system the first time, please read your mail
+using the &#39;mail&#39; command.
+
+Exit to (S)hell, (H)alt or (R)eboot? [reboot] 
+</code></pre></section>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2024
+    <a class="link" href="https://gduale.com/">gduale&#39;s blog</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >✎ Paper</a
+  >
+</footer>
+
+  </body>
+</html>

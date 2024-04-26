@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://gduale.com/</loc>
-    <lastmod>2024-04-20T06:05:03+02:00</lastmod>
+    <lastmod>2024-04-26T23:05:03+02:00</lastmod>
+  </url><url>
+    <loc>https://gduale.com/posts/openbsd-on-a-scaleway-vm/</loc>
+    <lastmod>2024-04-26T23:05:03+02:00</lastmod>
   </url><url>
     <loc>https://gduale.com/posts/</loc>
-    <lastmod>2024-04-20T06:05:03+02:00</lastmod>
+    <lastmod>2024-04-26T23:05:03+02:00</lastmod>
   </url><url>
     <loc>https://gduale.com/posts/welcome-to-my-personal-blog/</loc>
     <lastmod>2024-04-20T06:05:03+02:00</lastmod>
