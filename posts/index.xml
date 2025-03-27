@@ -4,23 +4,30 @@
     <title>Posts on gduale&#39;s blog</title>
     <link>https://gduale.com/posts/</link>
     <description>Recent content in Posts on gduale&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Apr 2024 23:05:03 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 26 Mar 2025 09:00:00 +0100</lastBuildDate>
     <atom:link href="https://gduale.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SQLScope a dashboard for SQL databases</title>
+      <link>https://gduale.com/posts/sqlscope-a-dashboard-for-sql-databases/</link>
+      <pubDate>Wed, 26 Mar 2025 09:00:00 +0100</pubDate>
+      <guid>https://gduale.com/posts/sqlscope-a-dashboard-for-sql-databases/</guid>
+      <description>&lt;p&gt;Hello everyone!&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m delighted to present my new open-source software.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s called &amp;ldquo;SQLScope&amp;rdquo;.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s a dashboard for databases like PostgreSQL, MySQL, and MariaDB.&lt;/p&gt;&#xA;&lt;p&gt;The goal is to provide an overview of your database server on a single page.&lt;/p&gt;&#xA;&lt;p&gt;The information you will have includes a list of your servers and their status.&lt;/p&gt;&#xA;&lt;p&gt;For the status, you&amp;rsquo;ll see:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Whether the server is reachable or not&lt;/li&gt;&#xA;&lt;li&gt;Whether the server is a master or a slave and if the replication is OK or not&lt;/li&gt;&#xA;&lt;li&gt;The SQL user used to connect to the server&lt;/li&gt;&#xA;&lt;li&gt;The engine version&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Oh, I almost forgot! There is also a subpage to view the common SQL parameters currently running in the engine.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>OpenBSD on a Scaleway VM</title>
       <link>https://gduale.com/posts/openbsd-on-a-scaleway-vm/</link>
       <pubDate>Fri, 26 Apr 2024 23:05:03 +0200</pubDate>
       <guid>https://gduale.com/posts/openbsd-on-a-scaleway-vm/</guid>
-      <description>In this article, we will see how to install OpenBSD on a Scaleway VM.&#xA;First, create an instance (a VM) like usual. You can choose for example:&#xA;Model: DEV1-S OS: Debian 12 Disk size: 10GB Don&amp;rsquo;t forget to add your public ssh key to be able to access to the VM via ssh.&#xA;Now, your VM is up and running! Cool we can eraze it ;)&#xA;Switch off the VM, go to &amp;ldquo;Advanced settings&amp;rdquo; and select &amp;ldquo;Use rescue image&amp;rdquo; and save.</description>
+      <description>&lt;p&gt;In this article, we will see how to install &lt;a href=&#34;https://openbsd.org&#34;&gt;OpenBSD&lt;/a&gt; on a &lt;a href=&#34;https://scaleway.com&#34;&gt;Scaleway&lt;/a&gt; VM.&lt;/p&gt;&#xA;&lt;p&gt;First, create an instance (a VM) like usual. You can choose for example:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Model: DEV1-S&lt;/li&gt;&#xA;&lt;li&gt;OS: Debian 12&lt;/li&gt;&#xA;&lt;li&gt;Disk size: 10GB&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Don&amp;rsquo;t forget to add your public ssh key to be able to access to the VM via ssh.&lt;/p&gt;&#xA;&lt;p&gt;Now, your VM is up and running! Cool we can eraze it ;)&lt;/p&gt;&#xA;&lt;p&gt;Switch off the VM, go to &amp;ldquo;Advanced settings&amp;rdquo; and select &amp;ldquo;Use rescue image&amp;rdquo; and save.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Welcome to my personal blog</title>
       <link>https://gduale.com/posts/welcome-to-my-personal-blog/</link>
       <pubDate>Sat, 20 Apr 2024 06:05:03 +0200</pubDate>
       <guid>https://gduale.com/posts/welcome-to-my-personal-blog/</guid>
-      <description>Hello everyone!&#xA;Welcome to my new blog. We&amp;rsquo;ll be talking here about tech, open source, Linux, and also *BSD systems (with a preference for OpenBSD, you&amp;rsquo;ll see).&#xA;I won&amp;rsquo;t say more for now; see you in the next article.</description>
+      <description>&lt;p&gt;Hello everyone!&lt;/p&gt;&#xA;&lt;p&gt;Welcome to my new blog. We&amp;rsquo;ll be talking here about tech, open source, Linux, and also *BSD systems (with a preference for OpenBSD, you&amp;rsquo;ll see).&lt;/p&gt;&#xA;&lt;p&gt;I won&amp;rsquo;t say more for now; see you in the next article.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
