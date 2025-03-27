@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://gduale.com/</loc>
+    <loc>https://gduale.github.io/</loc>
     <lastmod>2025-03-26T09:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://gduale.com/posts/</loc>
+    <loc>https://gduale.github.io/posts/</loc>
     <lastmod>2025-03-26T09:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://gduale.com/posts/sqlscope-a-dashboard-for-sql-databases/</loc>
+    <loc>https://gduale.github.io/posts/sqlscope-a-dashboard-for-sql-databases/</loc>
     <lastmod>2025-03-26T09:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://gduale.com/posts/openbsd-on-a-scaleway-vm/</loc>
+    <loc>https://gduale.github.io/posts/openbsd-on-a-scaleway-vm/</loc>
     <lastmod>2024-04-26T23:05:03+02:00</lastmod>
   </url><url>
-    <loc>https://gduale.com/posts/welcome-to-my-personal-blog/</loc>
+    <loc>https://gduale.github.io/posts/welcome-to-my-personal-blog/</loc>
     <lastmod>2024-04-20T06:05:03+02:00</lastmod>
   </url><url>
-    <loc>https://gduale.com/categories/</loc>
+    <loc>https://gduale.github.io/categories/</loc>
   </url><url>
-    <loc>https://gduale.com/tags/</loc>
+    <loc>https://gduale.github.io/tags/</loc>
   </url>
 </urlset>
